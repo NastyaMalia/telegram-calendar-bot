@@ -2,6 +2,7 @@ import requests
 import os
 
 from dotenv import load_dotenv
+from calendar_service import get_today_events, create_daily_message
 
 load_dotenv()
 
@@ -19,4 +20,8 @@ def send_message(message):
     return response.json()
 
 
-send_message("Good morning Anastasiya!")
+events = get_today_events()
+
+message = create_daily_message(events)
+
+send_message(message)
